@@ -99,7 +99,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[])
                     std::cout << msg.get_payload() << std::endl;
                     database::User a = database::User::fromJSON(payload);
                     if (!a.save_to_mysql()) {
-                        std::cout << "error whilt savind to mysql" << std::endl;
+                        std::cout << "error while saving to mysql" << std::endl;
                     }
 
                     // Now commit the message
