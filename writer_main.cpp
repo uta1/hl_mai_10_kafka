@@ -5,7 +5,7 @@
 #include <cppkafka/configuration.h>
 #include "config/config.h"
 
-#include "database/author.h"
+#include "database/user.h"
 namespace po = boost::program_options;
 
 bool running = true;
@@ -97,8 +97,10 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[])
                     // Print the payload
                     std::string payload = msg.get_payload();
                     std::cout << msg.get_payload() << std::endl;
-                    database::Author a = database::Author::fromJSON(payload);
-                    a.save_to_mysql();
+                    database::User a = database::User::fromJSON(payload);
+                    if (!a.save_to_mysql()) {
+                        std::cout << "error whilt savind to mysql" << std::endl;
+                    }
 
                     // Now commit the message
                     consumer.commit(msg);

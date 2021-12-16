@@ -25,14 +25,14 @@ include_directories(${Boost_INCLUDE_DIR})
 link_directories("/usr/local/lib")
 
 add_executable(${EXAMPLE_BINARY} main.cpp 
-                                 config/config.cpp 
+                                 config/config.cpp  
                                  database/database.cpp
-                                 database/author.cpp)
+                                 database/user.cpp)
 
 add_executable(${WRITER_BINARY} writer_main.cpp 
-                                 config/config.cpp 
+                                 config/config.cpp  
                                  database/database.cpp
-                                 database/author.cpp)
+                                 database/user.cpp)
 
 target_include_directories(${EXAMPLE_BINARY} PRIVATE "${CMAKE_BINARY_DIR}")
 target_include_directories(${WRITER_BINARY} PRIVATE "${CMAKE_BINARY_DIR}")
