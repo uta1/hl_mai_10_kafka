@@ -39,7 +39,7 @@ using Poco::Util::ServerApplication;
 
 #include "http_request_factory.h"
 #include "../config/config.h"
-#include "../database/author.h"
+#include "../database/user.h"
 
 
 class HTTPWebServer : public Poco::Util::ServerApplication
@@ -131,7 +131,7 @@ protected:
                       [[maybe_unused]] const std::string &value)
     {
         std::cout << "init db" << std::endl;
-        database::Author::init();
+        database::User::init();
     }
     void handleLogin([[maybe_unused]] const std::string &name,
                      [[maybe_unused]] const std::string &value)

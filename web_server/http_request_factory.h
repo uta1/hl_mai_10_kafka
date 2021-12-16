@@ -39,12 +39,17 @@ using Poco::Util::OptionCallback;
 using Poco::Util::HelpFormatter;
 
 
-#include "handlers/author_handler.h"
+#include "handlers/user_handler.h"
 
 
 static bool startsWith(const std::string& str, const std::string& prefix)
 {
     return str.size() >= prefix.size() && 0 == str.compare(0, prefix.size(), prefix);
+}
+
+
+static bool checkShouldHandle(const std::string& uri, const std::string& handler_name) {
+    return startsWith(uri, handler_name) && (uri == handler_name || uri[handler_name.length()] == '?');
 }
 
 
@@ -59,8 +64,8 @@ public:
     HTTPRequestHandler* createRequestHandler(
         const HTTPServerRequest& request)
     {
-        static std::string author="/author"; 
-        if (startsWith(request.getURI(),author)) return new AuthorHandler(_format);
+        static std::string author="/person";
+        if (checkShouldHandle(request.getURI(), author)) return new UserHandler(_format);
         return 0;
     }
 
